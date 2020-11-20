@@ -3,45 +3,38 @@
 <link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" href="css/w3-theme.css">
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>
-            Karshare
-        </title>
-    </head>
+  <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   
+    <title>
+     Ton appli !
+    </title>
+   
+  </head>
+  
+  <header>
+	  <?php if($context->error): ?>
+      	<div id="flash_error" class="error w3-panel w3-red">
+        	<?php echo " $context->error !!!!!" ?>
+      	</div>
+      <?php else: ?>
+			<div class="w3-panel w3-blue"> <?php if (isset($_GET['action'])) : echo "L'action ".$_GET['action']." a bien été effectuée"; endif ?> </div>
+      <?php endif; ?>
+  </header>
 
-    <body>
-        <h2>Karshare</h2>
-        <?php if($context->getSessionAttribute('user_id')): ?>
-	    <?php echo $context->getSessionAttribute('user_id')." est connecte"; ?>
-        <?php endif; ?>
+  <body>
+    <h2>Super c'est ton appli ! </h2>
+    <?php if($context->getSessionAttribute('user_id')): ?>
+	<?php echo $context->getSessionAttribute('user_id')." est connecte"; ?>
+     <?php endif; ?>
 
-        <div id="bandeau">
-            <?php if($view==context::ERROR) :?>
-      	    <div id="flash_error" class="error w3-panel w3-red">
-        	    <p>action echouee</p>
-      	    </div>
-                <?php elseif($context->error) :?>
-                <div id="context->error" class="error w3-panel w3-red">
-                    <?php echo " $context->error !!!!!" ?>
-                </div>
-            <?php elseif ($view==context::SUCCESS): ?>
-        <div id="notif" >
-      	    <p>action reussie</p>
-        </div>
-        <?php endif ?>
-        </div>
+    <div id="page">
+      <div id="page_maincontent">	
+      	<?php include($template_view); ?>
+      </div>
+    </div>
+      
 
-
-        <div id="page">
-	        <?php if ($view==context::SUCCESS){ ?>
-            <div id="page_maincontent">
-      	        <?php include($template_view); ?>
-            </div>
-	        <?php } ?>
-        </div>
-
-
-    </body>
+  </body>
 
 </html>
