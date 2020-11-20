@@ -1,5 +1,4 @@
 <script>
-    <script>
     var xhr;
 
     function recupereReponse(){ if((xhr.readyState==4) && (xhr.status==200)){
