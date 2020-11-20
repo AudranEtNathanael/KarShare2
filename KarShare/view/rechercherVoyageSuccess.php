@@ -7,7 +7,7 @@
         info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
         //traiteInfo(info); //chaine de caractères et séparés par une virgule
         alert(info);
-    }
+    };
         
         
     function envoieRequete(){
@@ -26,7 +26,7 @@
         xhr.open("GET", "monApplication.php?depart=Montpellier&nom=Bordeaux", true);
         xhr.send(null);
         
-    }
+    };
                  
 
 
