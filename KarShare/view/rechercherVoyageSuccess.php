@@ -1,13 +1,16 @@
 <script>
+
     var xhr;
 
-    function recupereReponse(){ if((xhr.readyState==4) && (xhr.status==200)){
-        alert("recupere Reponse");
-        var data=xhr.responseText;
-        info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
-        //traiteInfo(info); //chaine de caractères et séparés par une virgule
-        alert(info);
-    };
+    function recupereReponse(){
+        if((xhr.readyState==4) && (xhr.status==200)){
+            alert("recupere Reponse");
+            var data=xhr.responseText;
+            info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
+            //traiteInfo(info); //chaine de caractères et séparés par une virgule
+            alert(info);
+        }
+    }
         
         
     function envoieRequete(){
@@ -26,7 +29,7 @@
         xhr.open("GET", "monApplication.php?depart=Montpellier&nom=Bordeaux", true);
         xhr.send(null);
         
-    };
+    }
                  
 
 
