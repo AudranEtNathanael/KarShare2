@@ -3,6 +3,7 @@
     var xhr;
 
     function recupereReponse(){ if((xhr.readyState==4) && (xhr.status==200)){
+        alert("recupere Reponse");
         var data=xhr.responseText;
         info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
         //traiteInfo(info); //chaine de caractères et séparés par une virgule
@@ -11,6 +12,7 @@
         
         
     function envoieRequete(){
+        alert("envois Requete");
         if(window.ActiveXObject){
             try{
                 xhr=new ActiveXObject("Microsoft.XMLHTTP");
