@@ -63,6 +63,13 @@ class mainController{
 		$context->reservations = reservationTable::getReservationsByVoyage($_GET['voyage']);
 		return context::SUCCESS;
 	}
+    
+    
+    public static function RechercherVoyage($request,$context){
+        $context->trajet = trajetTable::getTrajet($_GET['depart'],$_GET['arrivee']);
+        $context->voyages = voyageTable::getVoyageByTrajet($context->trajet->id);
+        return context::SUCCESS;
+    }
 
 
 }
