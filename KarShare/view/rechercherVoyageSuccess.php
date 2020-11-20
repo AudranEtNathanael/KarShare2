@@ -1,3 +1,37 @@
+<script>
+    <script>
+    var xhr;
+
+    function recupereReponse(){ if((xhr.readyState==4) && (xhr.status==200)){
+        var data=xhr.responseText;
+        info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
+        //traiteInfo(info); //chaine de caractères et séparés par une virgule
+        alert(info);
+    }
+        
+        
+    function envoieRequete(){
+        if(window.ActiveXObject){
+            try{
+                xhr=new ActiveXObject("Microsoft.XMLHTTP");
+            }// autre version ie < 5.0
+            catch(e){
+                xhr=new ActiveXObject("MSXML2.XMLHTTP");
+            }
+        }else if(window.XMLHttpRequest){
+            xhr=new XMLHttpRequest();
+        }
+        xhr.onreadystatechange=recupereReponse;
+        xhr.open("GET", "monApplication.php?depart=Montpellier&nom=Bordeaux", true);
+        xhr.send(null);
+        
+    }
+                 
+
+
+</script>
+
+<button id="envoisrequete" onClick="envoieRequete()">test</button>
 Voici les Voyages demandés:
 
 <table class="w3-table w3-striped w3-cyan">
