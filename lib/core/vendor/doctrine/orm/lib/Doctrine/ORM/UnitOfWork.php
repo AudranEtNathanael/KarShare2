@@ -2621,7 +2621,7 @@ class UnitOfWork implements PropertyChangedListener
                         $class->reflFields[$field]->setValue($entity, $data[$field]);
                         $this->originalEntityData[$oid][$field] = $data[$field];
 
-                        continue;
+                        break; // modified byNL, previously was : continue;
                     }
 
                     $associatedId = array();
