@@ -41,7 +41,7 @@ Voici les Voyages demandés:
 <table class="w3-table w3-striped w3-cyan">
 	<tr>
 		<th>id</th>
-		<th>conducteur</th>
+        echo"<th>$voyage->id</th>"; <!--<th>conducteur</th>>
 		<th>trajet</th>
 		<th>tarif</th>
 		<th>nbplace</th>
