@@ -30,7 +30,8 @@ if($view===false)
 //inclusion du layout qui va lui meme inclure le template view
 elseif($view!=context::NONE)
 {
-	$template_view=$nameApp."/view/".$action.$view.".php";
+    multiView = array($nameApp."/view/".helloWorld.$view.".php", $nameApp."/view/".helloWorld.$view.".php")
+	//$template_view=$nameApp."/view/".$action.$view.".php";
 	include($nameApp."/layout/".$context->getLayout().".php");
 }
 
