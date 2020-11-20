@@ -26,7 +26,7 @@
             xhr=new XMLHttpRequest();
         }
         xhr.onreadystatechange=recupereReponse;
-        xhr.open("GET", "monApplication.php?action=rechercherVoyage&depart=Montpellier&nom=Bordeaux", true);
+        xhr.open("GET", "monApplication.php?action=rechercherVoyage&depart=Montpellier&arrivee=Bordeaux", true);
         xhr.send(null);
         
     }
