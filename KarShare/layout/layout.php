@@ -29,6 +29,45 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <p class="w3-text-dark-grey">Bienvennue sur KarShare, site de covoiturage.</p>
 </div>
 
+<!-- Bandeau (error,warning,info) -->
+	<div class="w3-row">
+		<div class="w3-quarter">
+			<p>	
+			</p>
+		</div>
+		<div class="w3-half  w3-center w3-panel ">
+		  <?php 
+		  	$band=False;
+		  	$color="w3-red";
+		  	$txtband="";
+		  	if($context->error){
+		  		$band=True;
+			  	$color="w3-red";
+			  	$txtband=$context->error;
+		 	} 
+			elseif($context->warning){
+		  		$band=True;
+			  	$color="w3-yellow";
+			  	$txtband=$context->warning;
+			}
+			elseif ($context->info) {
+		  		$band=True;
+			  	$color="w3-theme";
+			  	$txtband=$context->info;				
+			}
+			if ($band==True){
+				?>
+				<div id="bandeau" class="<?php echo "$color" ?>">
+	        		<?php echo " $txtband !" ?>
+	      		</div>
+	      		<?php
+	      	}
+	        ?>
+
+	    </div>
+	</div>
+<!-- Fin Bandeau -->
+
   </header>
 
   <body>

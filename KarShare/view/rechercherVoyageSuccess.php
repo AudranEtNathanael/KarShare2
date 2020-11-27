@@ -1,3 +1,74 @@
+
+<script>
+
+var xhr;
+
+function recupereReponse(){
+	if((xhr.readyState==4) && (xhr.status==200)){
+		alert("recupere Reponse");
+		var data=xhr.responseText;
+		info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
+		//traiteInfo(info); //chaine de caractères et séparés par une virgule
+		alert(info);
+		//document.getElementById("view1").innerHTML.replace(info);
+		$(document).ready(function(){
+						  $("#view1").html(info);
+						  $("").html()
+		});
+	}
+}
+
+
+function envoieRequete(){
+	alert("envois Requete");
+	if(window.ActiveXObject){
+		try{
+			xhr=new ActiveXObject("Microsoft.XMLHTTP");
+		}// autre version ie < 5.0
+		catch(e){
+			xhr=new ActiveXObject("MSXML2.XMLHTTP");
+		}
+	}else if(window.XMLHttpRequest){
+		xhr=new XMLHttpRequest();
+	}
+	xhr.onreadystatechange=recupereReponse;
+	xhr.open("GET", "singleView.php?action=rechercherVoyage&depart=Paris&arrivee=Lyon", true);
+	xhr.send(null);
+	
+}
+
+
+
+</script>
+
+<hidden id="data_bandeau">
+	<?php
+	$band=False;
+  	$color="w3-red";
+  	$txtband="";
+	if($context->error){
+  		$band=True;
+	  	$color="w3-red";
+	  	$txtband=$context->error;		
+	}
+	elseif{
+  		$band=True;
+	  	$color="w3-yellow";
+	  	$txtband=$context->warning;
+	}
+	elseif{
+  		$band=True;
+	  	$color="w3-theme";
+	  	$txtband=$context->info;	
+	}
+	echo '<div id="affichagebandeau">'.echo $band.'</div>';
+	echo '<div id="colorbandeau">'.echo $color.'</div>';
+	echo '<div id="txtbandeau">'.echo $txtband.'</div>';
+	?>
+</hidden>
+
+
+
 <h4 class="w3-center">Voici les voyages pour le trajet entre <?php echo $context->voyages[0]->trajet->depart ?> et <?php echo $context->voyages[0]->trajet->arrivee ?>:</h4>
 <center>
 <table class="w3-table w3-striped w3-cyan w3-centered" style=width:50% >
