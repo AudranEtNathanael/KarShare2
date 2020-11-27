@@ -66,8 +66,21 @@ class mainController{
 
 	public static function rechercherVoyage($request,$context){
 		$context->trajet = trajetTable::getTrajet($_GET['depart'],$_GET['arrivee']);
-		$context->voyages = voyageTable::getVoyageByTrajet($context->trajet->id);
-		return context::SUCCESS;
+		if ($context->trajet){
+			$context->voyages = voyageTable::getVoyageByTrajet($context->trajet->id);
+			if ($context->voyages){
+				$context->info="Recherche termine";
+				return context::SUCCESS;
+			}
+			else {
+				$context->info="Aucun voyage pour ce trajet";
+				return context::ERROR;
+			}
+		}
+		else {
+			$context->error="Votre trajet n existe pas";
+			return context::ERROR;
+		}
 	}
 
 
