@@ -42,8 +42,10 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
      <?php endif; ?>
 
     <div id="page">
-      <div id="page_maincontent">	
-      	<?php include($template_view); ?>
+      <div id="page_maincontent">
+		<div id="view1">
+      		<?php include($template_view); ?>
+		</div>
       </div>
     </div>
       
