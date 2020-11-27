@@ -9,6 +9,10 @@ function recupereReponse(){
 		info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
 		//traiteInfo(info); //chaine de caractères et séparés par une virgule
 		alert(info);
+		//document.getElementById("view1").innerHTML.replace(info);
+		$(document).ready(function(){
+						  $("#view1").html(info);
+		});
 	}
 }
 
@@ -26,7 +30,7 @@ function envoieRequete(){
 		xhr=new XMLHttpRequest();
 	}
 	xhr.onreadystatechange=recupereReponse;
-	xhr.open("GET", "monApplication.php?action=rechercherVoyage&depart=Montpellier&arrivee=Bordeaux", true);
+	xhr.open("GET", "singleView.php?action=rechercherVoyage&depart=Paris&arrivee=Lyon", true);
 	xhr.send(null);
 	
 }
