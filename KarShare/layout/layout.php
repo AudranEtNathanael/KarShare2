@@ -28,11 +28,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <h1 class="w3-jumbo w3-text-blue"><b>KarShare </b></h1>
     <p class="w3-text-dark-grey">Bienvennue sur KarShare, site de covoiturage.</p>
 </div>
-	  <?php if($context->error): ?>
-      	<div id="flash_error" class="error w3-panel w3-red">
-        	<?php echo " $context->error !!!!!" ?>
-      	</div>
-            <?php endif; ?>
+
   </header>
 
   <body>
