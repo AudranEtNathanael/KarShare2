@@ -41,31 +41,31 @@ function envoieRequete(){
 
 </script>
 
-<hidden id="data_bandeau">
+<div hidden id="data_bandeau">
 	<?php
-	$band=False;
+	$band="False";
   	$color="w3-red";
   	$txtband="";
 	if($context->error){
-  		$band=True;
+  		$band="True";
 	  	$color="w3-red";
 	  	$txtband=$context->error;		
 	}
-	elseif{
-  		$band=True;
+	elseif($context->warning){
+  		$band="True";
 	  	$color="w3-yellow";
 	  	$txtband=$context->warning;
 	}
-	elseif{
-  		$band=True;
+	elseif($context->info){
+  		$band="True";
 	  	$color="w3-theme";
 	  	$txtband=$context->info;	
 	}
-	echo '<div id="affichagebandeau">'.echo $band.'</div>';
-	echo '<div id="colorbandeau">'.echo $color.'</div>';
-	echo '<div id="txtbandeau">'.echo $txtband.'</div>';
+	echo '<div id="affichagebandeau">'. $band.'</div>';
+	echo '<div id="colorbandeau">'. $color.'</div>';
+	echo '<div id="txtbandeau">'. $txtband.'</div>';
 	?>
-</hidden>
+</div >
 
 
 
