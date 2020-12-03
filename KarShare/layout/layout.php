@@ -37,31 +37,29 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 		</div>
 		<div class="w3-half  w3-center w3-panel ">
 		  <?php 
-		  	$band=False;
+		  	$band="true";
 		  	$color="w3-red";
 		  	$txtband="";
 		  	if($context->error){
-		  		$band=True;
+		  		$band="false";
 			  	$color="w3-red";
 			  	$txtband=$context->error;
 		 	} 
 			elseif($context->warning){
-		  		$band=True;
+		  		$band="false";
 			  	$color="w3-yellow";
 			  	$txtband=$context->warning;
 			}
 			elseif ($context->info) {
-		  		$band=True;
+		  		$band="false";
 			  	$color="w3-theme";
 			  	$txtband=$context->info;				
 			}
-			if ($band==True){
 				?>
-				<div id="bandeau" class="<?php echo "$color" ?>">
+				<div id="bandeau" hidden="<?php echo $band ?>"> class="<?php echo "$color" ?>">
 	        		<?php echo " $txtband !" ?>
 	      		</div>
 	      		<?php
-	      	}
 	        ?>
 
 	    </div>

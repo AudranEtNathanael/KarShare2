@@ -36,28 +36,26 @@ function envoieRequete(){
 	xhr.send(null);
 	
 }
-
-
-
 </script>
+
 
 <div hidden id="data_bandeau">
 	<?php
-	$band="False";
+	$band="true";
   	$color="w3-red";
   	$txtband="";
 	if($context->error){
-  		$band="True";
+  		$band="false";
 	  	$color="w3-red";
 	  	$txtband=$context->error;		
 	}
 	elseif($context->warning){
-  		$band="True";
+  		$band="false";
 	  	$color="w3-yellow";
 	  	$txtband=$context->warning;
 	}
 	elseif($context->info){
-  		$band="True";
+  		$band="false";
 	  	$color="w3-theme";
 	  	$txtband=$context->info;	
 	}
@@ -66,7 +64,6 @@ function envoieRequete(){
 	echo '<div id="txtbandeau">'. $txtband.'</div>';
 	?>
 </div >
-
 
 
 <h4 class="w3-center">Voici les voyages pour le trajet entre <?php echo $context->voyages[0]->trajet->depart ?> et <?php echo $context->voyages[0]->trajet->arrivee ?>:</h4>
@@ -104,3 +101,24 @@ function envoieRequete(){
 </form>
 
 </center>
+
+<script type="text/javascript">
+function actualiseBandeau(){
+	    // get the contents of the link that was clicked
+    var newText = "nouveau";
+
+    // replace the contents of the div with the link text
+    $( "#bandeau" ).text( $("#txtbandeau").text() );
+    $( "#bandeau" ).removeClass("w3-theme");
+    $( "#bandeau" ).removeClass("w3-yellow");
+    $( "#bandeau" ).removeClass("w3-red");
+    $( "#bandeau" ).addClass($("#colorbandeau").text());
+    if ($("#affichagebandeau").text()=="false"){
+		$( "#bandeau" ).attr("hidden",false);
+    }
+    //$( "#bandeau" ).attr("hidden",$("#affichagebandeau").text());
+    
+}
+
+window.onload=actualiseBandeau();
+</script>
