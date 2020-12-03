@@ -1,42 +1,5 @@
 
-<script>
 
-var xhr;
-
-function recupereReponse(){
-	if((xhr.readyState==4) && (xhr.status==200)){
-		alert("recupere Reponse");
-		var data=xhr.responseText;
-		info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
-		//traiteInfo(info); //chaine de caractères et séparés par une virgule
-		alert(info);
-		//document.getElementById("view1").innerHTML.replace(info);
-		$(document).ready(function(){
-						  $("#view1").html(info);
-						  $("").html()
-		});
-	}
-}
-
-
-function envoieRequete(){
-	alert("envois Requete");
-	if(window.ActiveXObject){
-		try{
-			xhr=new ActiveXObject("Microsoft.XMLHTTP");
-		}// autre version ie < 5.0
-		catch(e){
-			xhr=new ActiveXObject("MSXML2.XMLHTTP");
-		}
-	}else if(window.XMLHttpRequest){
-		xhr=new XMLHttpRequest();
-	}
-	xhr.onreadystatechange=recupereReponse;
-	xhr.open("GET", "singleView.php?action=rechercherVoyage&depart=Paris&arrivee=Lyon", true);
-	xhr.send(null);
-	
-}
-</script>
 
 
 <div hidden id="data_bandeau">
@@ -121,4 +84,44 @@ function actualiseBandeau(){
 }
 
 window.onload=actualiseBandeau();
+</script>
+
+<script>
+
+var xhr;
+
+function recupereReponse(){
+	if((xhr.readyState==4) && (xhr.status==200)){
+		alert("recupere Reponse");
+		var data=xhr.responseText;
+		info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
+		//traiteInfo(info); //chaine de caractères et séparés par une virgule
+		alert(info);
+		//document.getElementById("view1").innerHTML.replace(info);
+		$(document).ready(function(){
+						  $("#view1").html(info);
+						  $("").html()
+		});
+	}
+}
+
+
+function envoieRequete(){
+	alert("envois Requete");
+	if(window.ActiveXObject){
+		try{
+			xhr=new ActiveXObject("Microsoft.XMLHTTP");
+		}// autre version ie < 5.0
+		catch(e){
+			xhr=new ActiveXObject("MSXML2.XMLHTTP");
+		}
+	}else if(window.XMLHttpRequest){
+		xhr=new XMLHttpRequest();
+	}
+	xhr.onreadystatechange=recupereReponse;
+	xhr.open("GET", "singleView.php?action=rechercherVoyage&depart=Paris&arrivee=Lyon", true);
+	xhr.send(null);
+	actualiseBandeau();
+	
+}
 </script>
