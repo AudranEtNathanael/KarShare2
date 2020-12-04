@@ -13,6 +13,7 @@ function recupereReponse(){
 		$(document).ready(function(){
 						  $("#view1").html(info);
 		});
+		
 	}
 }
 
@@ -30,7 +31,8 @@ function envoieRequete(){
 		xhr=new XMLHttpRequest();
 	}
 	xhr.onreadystatechange=recupereReponse;
-	xhr.open("GET", "singleView.php?action=rechercherVoyage&depart=Paris&arrivee=Lyon", true);
+	//xhr.open("GET", "singleView.php?action=rechercherVoyage&depart="+Paris+"&arrivee="+Lyon+", true);
+	xhr.open("GET", "singleView.php?action=rechercherVoyage&depart="+document.getElementById("depart").value+"&arrivee="+document.getElementById("arrivee").value, true);
 	xhr.send(null);
 	
 }
@@ -70,9 +72,19 @@ function envoieRequete(){
 <form action="monApplication.php" target="_blank" method="get" >
 	<div class=" w3-center">
 		<input type="hidden" name="action" value="index" >
-		<input id="envoisrequete" onClick="envoieRequete()" value="refresh view" class="w3-button w3-theme-d1 w3-centered">
 		<input  type="submit" value="Retour a l acceuil" class="w3-button w3-theme-d1">
 	</div>
 </form>
+
+
+<form action="envoieRequete()" target="_blank" method="get" style="width:50%">
+	<div class="w3-row w3-center">
+		<input  onClick="envoieRequete()" value="refresh view" class="w3-col l4 w3-button w3-theme-d3">
+		<input type="text" name="depart" id="depart" value="Montpellier" class="w3-col l4 w3-input w3-border">
+		<input type="text" name="arrivee" id="arrivee" value="Bordeaux" class="w3-col l4 w3-input w3-border">
+	</div>
+</form>
+
+<input id="envoisrequete" onClick="envoieRequete()" value="refresh view" class="w3-button w3-theme-d1 w3-centered">
 
 </center>
