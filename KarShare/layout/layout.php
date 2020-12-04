@@ -23,6 +23,25 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   </head>
   
   <header>
+<script type="text/javascript">
+	function actualiseBandeau(){
+	    // get the contents of the link that was clicked
+    var newText = "nouveau";
+
+    // replace the contents of the div with the link text
+    $( "#bandeau" ).text( $("#txtbandeau").text() );
+    $( "#bandeau" ).removeClass("w3-theme");
+    $( "#bandeau" ).removeClass("w3-yellow");
+    $( "#bandeau" ).removeClass("w3-red");
+    $( "#bandeau" ).addClass($("#colorbandeau").text());
+    if ($("#affichagebandeau").text()=="false"){
+		$( "#bandeau" ).attr("hidden",false);
+    }
+    //$( "#bandeau" ).attr("hidden",$("#affichagebandeau").text());
+    
+}
+</script>
+  	
 <!-- Header -->
 <div class="w3-center">
     <h1 class="w3-jumbo w3-text-blue"><b>KarShare </b></h1>
@@ -82,5 +101,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
       
 
   </body>
+
+
 
 </html>
