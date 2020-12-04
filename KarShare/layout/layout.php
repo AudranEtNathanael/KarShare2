@@ -29,8 +29,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     var newText = "nouveau";
 
     // replace the contents of the div with the link text
-		var mamouth = $("#txtbandeau").text()
-    $( "#bandeau" ).text( $mammouth );
+    $( "#bandeau" ).text( $("#txtbandeau").text() );
     $( "#bandeau" ).removeClass("w3-theme");
     $( "#bandeau" ).removeClass("w3-yellow");
     $( "#bandeau" ).removeClass("w3-red");
