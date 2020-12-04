@@ -41,7 +41,7 @@ function envoieRequete(){
 
 
 <?php
-include('ViewPHP/dataBandeauGeneration.php');
+include('ViewLib/dataBandeauGeneration.php');
 ?>
 
 
@@ -73,21 +73,14 @@ include('ViewPHP/dataBandeauGeneration.php');
 </table>
 <br>
 
-<form action="envoieRequete()" target="_blank" method="get" style="width:50%">
-	<div class="w3-row w3-center">
-		<input  onClick="envoieRequete()" value="refresh view" class="w3-col l4 w3-button w3-theme-d3">
-		<input type="text" name="depart" id="depart" value="Paris" class="w3-col l4 w3-input w3-border">
-		<input type="text" name="arrivee" id="arrivee" value="Lyon" class="w3-col l4 w3-input w3-border">
-	</div>
-</form>
 
-<form action="monApplication.php" target="_blank" method="get" >
-	<div class=" w3-center">
-		<input type="hidden" name="action" value="index" >
-		<input  type="submit" value="Retour a l acceuil" class="w3-button w3-theme-d1">
-	</div>
-</form>
+<?php
+include('ViewLib/chercherVoyage.php');
+?>
 
+<?php
+include('ViewLib/retourAcceuil.php');
+?>
 
 </center>
 <script type="text/javascript">
