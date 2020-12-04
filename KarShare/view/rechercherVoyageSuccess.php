@@ -4,22 +4,22 @@ var xhr;
 
 function recupereReponse(){
 	if((xhr.readyState==4) && (xhr.status==200)){
-		alert("recupere Reponse");
+		//alert("recupere Reponse");
 		var data=xhr.responseText;
 		info=data.split(','); //reponse sous la forme d'éléments inclus // dans une
 		//traiteInfo(info); //chaine de caractères et séparés par une virgule
-		alert(info);
+		//alert(info);
 		//document.getElementById("view1").innerHTML.replace(info);
 		$(document).ready(function(){
 						  $("#view1").html(info);
-						  $("").html()
+						  //$("").html()
 		});
 	}
 }
 
 
 function envoieRequete(){
-	alert("envois Requete");
+	//alert("envois Requete");
 	if(window.ActiveXObject){
 		try{
 			xhr=new ActiveXObject("Microsoft.XMLHTTP");
@@ -31,7 +31,7 @@ function envoieRequete(){
 		xhr=new XMLHttpRequest();
 	}
 	xhr.onreadystatechange=recupereReponse;
-	xhr.open("GET", "singleView.php?action=rechercherVoyage&depart=Paris&arrivee=Lyon", true);
+	xhr.open("GET", "singleView.php?action=rechercherVoyage&depart="+document.getElementById("depart").value+"&arrivee="+document.getElementById("arrivee").value, true);
 	xhr.send(null);
 	actualiseBandeau();
 	
@@ -94,12 +94,22 @@ function envoieRequete(){
 	?>
 </table>
 <br>
+
+<form action="envoieRequete()" target="_blank" method="get" style="width:50%">
+	<div class="w3-row w3-center">
+		<input  onClick="envoieRequete()" value="refresh view" class="w3-col l4 w3-button w3-theme-d3">
+		<input type="text" name="depart" id="depart" value="Paris" class="w3-col l4 w3-input w3-border">
+		<input type="text" name="arrivee" id="arrivee" value="Lyon" class="w3-col l4 w3-input w3-border">
+	</div>
+</form>
+
 <form action="monApplication.php" target="_blank" method="get" >
 	<div class=" w3-center">
 		<input type="hidden" name="action" value="index" >
 		<input  type="submit" value="Retour a l acceuil" class="w3-button w3-theme-d1">
 	</div>
 </form>
+
 
 </center>
 <script type="text/javascript">

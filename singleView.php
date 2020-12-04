@@ -1,11 +1,9 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <?php
 //nom de l'application
 $nameApp = "KarShare";
 
 //action par défaut
-$action = "index";
+$action = "undefinedViewError";  // car est supposé être appelé pour charger une vue bien définie
 
 if(key_exists("action", $_REQUEST))
 $action =  $_REQUEST['action'];
@@ -33,7 +31,9 @@ if($view===false)
 elseif($view!=context::NONE)
 {
 	$template_view=$nameApp."/view/".$action.$view.".php";
-	include($nameApp."/layout/".$context->getLayout().".php");
+	?><div id="view1"><?php
+	include($template_view);
+	?></div><?php
 }
 
 ?>
