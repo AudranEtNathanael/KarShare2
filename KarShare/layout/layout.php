@@ -144,6 +144,13 @@ function envoieRequete(){
 
   </body>
 
+<!-- Navbar (sticky bottom) -->
+<div class="w3-theme w3-bottom w3-hide-small">
+<div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
+<p>Audran Bert - Nathanaël Lefèvre</p>
+</div>
+</div>
+
 
 
 </html>
