@@ -9,10 +9,10 @@
 			
 			$voyageRepository = $em->getRepository('voyage');
 			$journey = $voyageRepository->findBy(array('trajet' => $trajet));
-			
+			/*
 			if ($journey == false){
 				echo 'Erreur sql';
-			}
+			}*/
 			return $journey;
 		}
 		

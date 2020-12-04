@@ -9,10 +9,10 @@
 			
 			$trajetRepository = $em->getRepository('trajet');
 			$trajet = $trajetRepository->findOneBy(array('depart' => $depart, 'arrivee' => $arrivee));
-			
+			/*
 			if ($trajet == false){
 				echo 'Erreur sql';
-			}
+			}*/
 			return $trajet;
 		}
 		
