@@ -85,7 +85,7 @@ function envoieRequete(){
 <!-- Header -->
 <div class="w3-center">
     <h1 class="w3-jumbo w3-text-blue"><b>KarShare </b></h1>
-    <p class="w3-text-dark-grey">Bienvennue sur KarShare, site de covoiturage.</p>
+    <p class="w3-text-dark-grey">Bienvenue sur KarShare, site de covoiturage.</p>
 </div>
 
 <!-- Bandeau (error,warning,info) -->

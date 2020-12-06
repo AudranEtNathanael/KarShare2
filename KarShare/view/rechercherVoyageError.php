@@ -3,7 +3,7 @@ include('ViewLib/dataBandeauGeneration.php');
 ?>
 
 <?php
-include('ViewLib/retourAcceuil.php');
+include('ViewLib/retourAccueil.php');
 ?>
 
 <script type="text/javascript">

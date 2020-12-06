@@ -69,7 +69,7 @@ class mainController{
         if ($context->trajet){
             $context->voyages = voyageTable::getVoyageByTrajet($context->trajet->id);
             if ($context->voyages){
-                $context->info="Recherche termine";
+                $context->info="Recherche terminee";
                 return context::SUCCESS;
             }
             else {

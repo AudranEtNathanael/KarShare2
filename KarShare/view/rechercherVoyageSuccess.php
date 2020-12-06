@@ -7,7 +7,7 @@ include('ViewLib/dataBandeauGeneration.php');
 ?>
 
 
-<h4 class="w3-center">Voici les voyages pour le trajet entre <?php echo $context->voyages[0]->trajet->depart ?> et <?php echo $context->voyages[0]->trajet->arrivee ?>:</h4>
+<h4 class="w3-center">Voici les voyages pour le trajet entre <?php echo $context->voyages[0]->trajet->depart ?> et <?php echo $context->voyages[0]->trajet->arrivee ?> :</h4>
 <center>
 <table class="w3-table w3-striped w3-cyan w3-centered" style=width:50% >
 	<tr>
@@ -41,7 +41,7 @@ include('ViewLib/chercherVoyage.php');
 ?>
 
 <?php
-include('ViewLib/retourAcceuil.php');
+include('ViewLib/retourAccueil.php');
 ?>
 
 </center>
