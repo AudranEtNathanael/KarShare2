@@ -83,5 +83,20 @@ class mainController{
         }
 	}
 
+    public static function inscription($request,$context){
 
+    }
+
+    public static function connexion($request,$context){
+        $context->user = utilisateurTable::getUserByLoginAndPass($_GET['identifiant'],$_GET['mdp']);
+        if ($context->user){
+            session_start();
+            session["user"]=$context->user;
+            return context::SUCCESS;  
+        } 
+        else{
+            $context->error="Mdp ou login inexact";
+            return context::ERROR;             
+        }
+    }
 }

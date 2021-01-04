@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <link rel="stylesheet" href="css/w3.css">
 <link rel="stylesheet" href="css/w3-theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 .w3-row-padding img {margin-bottom: 12px}
@@ -80,6 +81,26 @@ function envoieRequete(){
 	actualiseBandeau();
 	
 }
+
+
+function envoieRequeteConnexion(){
+	//alert("envois Requete");
+	if(window.ActiveXObject){
+		try{
+			xhr=new ActiveXObject("Microsoft.XMLHTTP");
+		}// autre version ie < 5.0
+		catch(e){
+			xhr=new ActiveXObject("MSXML2.XMLHTTP");
+		}
+	}else if(window.XMLHttpRequest){
+		xhr=new XMLHttpRequest();
+	}
+	xhr.onreadystatechange=recupereReponse;
+	xhr.open("GET", "singleView.php?action=connexion&identifiant="+document.getElementById("identifiantc").value+"&mdp="+document.getElementById("mdpc").value, true);
+	xhr.send(null);
+	actualiseBandeau();
+	
+}
 </script>
   	
 <!-- Header -->
@@ -88,6 +109,70 @@ function envoieRequete(){
     <p class="w3-text-dark-grey">Bienvenue sur KarShare, site de covoiturage.</p>
 </div>
 
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <button onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button w3-text-blue w3-hover-blue"><i class="fa fa-user"></i> Connexion</button>
+  </div>
+</div>
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+  		<div class="w3-row">
+				<form action=""  method="get" ><!-- Bandeau (error,warning,info) -->
+					<div class="w3-twothird w3-center w3-panel">
+						      <span onclick="document.getElementById('id01').style.display='none'"
+		      					class="w3-button w3-display-topright">&times;</span>
+		      					<h3 class="w3-text-blue">Connexion</h3>
+		      			<label for="identifiantc">Identifiant :</label><br>
+		      			<input type="text" name="identifiantc" id="identifiantc" value="Nom" class="  w3-input w3-border"><br>
+		      			<label for="mdpc">Mot de passe :</label><br>
+						<input type="password" name="mdpc" id="mdpc" value="" class="  w3-input w3-border"><br>
+						<input  onClick="envoieRequeteConnexion()" type="submit" value="Connexion" class="  w3-button w3-theme-d3">
+
+					</div>
+				</form>
+				<div class="w3-third w3-center">
+					<p>	
+						<br>
+						Pas encore inscrit?<br>
+						<button onclick="document.getElementById('id02').style.display='block';document.getElementById('id01').style.display='none'" class="w3-bar-item w3-button w3-text-blue w3-hover-blue"><i class="fa fa-user"></i> Inscrivez-vous</button>
+					</p>
+				</div>
+		</div>
+	</div>
+</div>
+
+<div id="id02" class="w3-modal">
+  <div class="w3-modal-content">
+  		<div class="w3-row">
+				<form action=""  method="get" ><!-- Bandeau (error,warning,info) -->
+					<div class="w3-twothird w3-center w3-panel">
+						      <span onclick="document.getElementById('id02').style.display='none' "
+		      					class="w3-button w3-display-topright">&times;</span>
+		      			<h3 class="w3-text-blue">Inscription</h3>
+		      			<label for="identifianti">Identifiant :</label><br>
+		      			<input type="text" name="identifianti" id="identifianti" value="Nom" class="  w3-input w3-border"><br>
+		      			<label for="mdpi">Mot de passe :</label><br>
+						<input type="password" name="mdpi" id="mdpi" value="" class="  w3-input w3-border"><br>
+						<label for="nom">Nom :</label><br>
+						<input type="txt" name="nom" id="nom" value="" class="  w3-input w3-border"><br>
+						<label for="prenom">Prénom :</label><br>
+						<input type="txt" name="prenom" id="prenom" value="" class="  w3-input w3-border"><br>
+						<label for="avatar">Avatar :</label><br>
+						<input type="txt" name="avatar" id="avatar" value="" class="  w3-input w3-border"><br>
+						<input  onClick="envoieRequeteInscription()" type="submit" value="Inscription" class="  w3-button w3-theme-d3">
+
+					</div>
+				</form>
+				<div class="w3-third w3-center">
+					<p>	<br>
+						Déja inscrit?<br>
+						<button onclick="document.getElementById('id01').style.display='block';document.getElementById('id02').style.display='none'" class="w3-bar-item w3-button w3-text-blue w3-hover-blue"><i class="fa fa-user"></i> Connectez-vous</button>
+					</p>
+				</div>
+		</div>
+	</div>
+</div>
 <!-- Bandeau (error,warning,info) -->
 	<div class="w3-row">
 		<div class="w3-quarter">
