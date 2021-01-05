@@ -22,7 +22,12 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     </title>
    
   </head>
-  
+  <?php
+  if( !isset($_SESSION)){
+  	session_start(); 
+  }
+ 
+?>
   <header>
 <script type="text/javascript">
 	function actualiseBandeau(){
@@ -63,7 +68,7 @@ function recupereReponse(){
 }
 
 
-function envoieRequete(){
+function envoieRequeteController(req){
 	//alert("envois Requete");
 	if(window.ActiveXObject){
 		try{
@@ -76,59 +81,63 @@ function envoieRequete(){
 		xhr=new XMLHttpRequest();
 	}
 	xhr.onreadystatechange=recupereReponse;
-	xhr.open("GET", "singleView.php?action=rechercherVoyage&depart="+document.getElementById("depart").value+"&arrivee="+document.getElementById("arrivee").value, true);
+	xhr.open("GET", req, true);
 	xhr.send(null);
 	actualiseBandeau();
 	
 }
 
+function envoieRequete(){
+	envoieRequeteController("singleView.php?action=rechercherVoyage&depart="+document.getElementById("depart").value+"&arrivee="+document.getElementById("arrivee").value);
+}
 
 function envoieRequeteConnexion(){
-	//alert("envois Requete");
-	if(window.ActiveXObject){
-		try{
-			xhr=new ActiveXObject("Microsoft.XMLHTTP");
-		}// autre version ie < 5.0
-		catch(e){
-			xhr=new ActiveXObject("MSXML2.XMLHTTP");
-		}
-	}else if(window.XMLHttpRequest){
-		xhr=new XMLHttpRequest();
-	}
-	xhr.onreadystatechange=recupereReponse;
-	xhr.open("GET", "singleView.php?action=connexion&identifiant="+document.getElementById("identifiantc").value+"&mdp="+document.getElementById("mdpc").value, true);
-	xhr.send(null);
-	actualiseBandeau();
+	envoieRequeteController( "singleView.php?action=connexion&identifiantc="+document.getElementById("identifiantc").value+"&mdpc="+document.getElementById("mdpc").value);
+}
+
+function envoieRequeteInscription(){
+	envoieRequeteController( "singleView.php?action=inscription&identifianti="+document.getElementById("identifianti").value+"&mdpi="+document.getElementById("mdpi").value+"&nom="+document.getElementById("nom").value+"&prenom="+document.getElementById("prenom").value);
 	
 }
+
 </script>
   	
 <!-- Header -->
 <div class="w3-center">
-    <h1 class="w3-jumbo w3-text-blue"><b>KarShare </b></h1>
+    <h1 class="w3-jumbo w3-text-blue"><b>KarShare</b></h1>
     <p class="w3-text-dark-grey">Bienvenue sur KarShare, site de covoiturage.</p>
 </div>
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar" id="myNavbar">
-    <button onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button w3-text-blue w3-hover-blue"><i class="fa fa-user"></i> Connexion</button>
+    <button  onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button w3-text-blue w3-hover-blue"><i class="fa fa-user"></i> 
+    <?php
+    if (isset($_SESSION["User"])){
+    	$p=$_SESSION["User"];
+    	echo $p->nom;
+    }
+    else{
+    	echo "Connexion";
+    }
+    ?></button>
   </div>
 </div>
 <div id="id01" class="w3-modal">
   <div class="w3-modal-content">
   		<div class="w3-row">
-				<form action=""  method="get" ><!-- Bandeau (error,warning,info) -->
+				<form action=""    method="get" style="" ><!-- Bandeau (error,warning,info) -->
 					<div class="w3-twothird w3-center w3-panel">
 						      <span onclick="document.getElementById('id01').style.display='none'"
 		      					class="w3-button w3-display-topright">&times;</span>
 		      					<h3 class="w3-text-blue">Connexion</h3>
+		      			<input type="hidden" name="action" value="connexion" >
 		      			<label for="identifiantc">Identifiant :</label><br>
 		      			<input type="text" name="identifiantc" id="identifiantc" value="Nom" class="  w3-input w3-border"><br>
 		      			<label for="mdpc">Mot de passe :</label><br>
 						<input type="password" name="mdpc" id="mdpc" value="" class="  w3-input w3-border"><br>
 						<input  onClick="envoieRequeteConnexion()" type="submit" value="Connexion" class="  w3-button w3-theme-d3">
-
+						
 					</div>
 				</form>
 				<div class="w3-third w3-center">
@@ -145,11 +154,12 @@ function envoieRequeteConnexion(){
 <div id="id02" class="w3-modal">
   <div class="w3-modal-content">
   		<div class="w3-row">
-				<form action=""  method="get" ><!-- Bandeau (error,warning,info) -->
+				<form action=""   method="get" style="" ><!-- Bandeau (error,warning,info) -->
 					<div class="w3-twothird w3-center w3-panel">
 						      <span onclick="document.getElementById('id02').style.display='none' "
 		      					class="w3-button w3-display-topright">&times;</span>
 		      			<h3 class="w3-text-blue">Inscription</h3>
+		      			<input type="hidden" name="action" value="inscription" >
 		      			<label for="identifianti">Identifiant :</label><br>
 		      			<input type="text" name="identifianti" id="identifianti" value="Nom" class="  w3-input w3-border"><br>
 		      			<label for="mdpi">Mot de passe :</label><br>
@@ -161,7 +171,7 @@ function envoieRequeteConnexion(){
 						<label for="avatar">Avatar :</label><br>
 						<input type="txt" name="avatar" id="avatar" value="" class="  w3-input w3-border"><br>
 						<input  onClick="envoieRequeteInscription()" type="submit" value="Inscription" class="  w3-button w3-theme-d3">
-
+						
 					</div>
 				</form>
 				<div class="w3-third w3-center">

@@ -1,12 +1,29 @@
-
-
+  <?php
+  if( !isset($_SESSION)){
+  	session_start(); 
+  }
+ 
+?>
+<h2 class="w3-center w3-text-blue">
+	Vous etes connecté en tant que <?php
+/*
+    if (isset($_SESSION["User"])){
+    	$p=$_SESSION["User"];
+    	echo $p->nom;
+    }
+    else{
+    	echo "Connexion";
+    }*/
+    echo $context->user->nom;
+    ?>
+</h2>
 <script>
 
 </script>
 <?php
 include('ViewLib/dataBandeauGeneration.php');
 ?>
-	<div class="w3-row">
+	<div class="w3-row ">
 		<div class="w3-quarter">
 			<p>	
 			</p>
@@ -25,5 +42,3 @@ include('ViewLib/dataBandeauGeneration.php');
 			</form>
 	</div>
 <!-- Fin Bandeau -->
-
-
