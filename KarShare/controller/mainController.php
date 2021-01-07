@@ -90,8 +90,8 @@ class mainController{
 
     public static function reserverVoyage($request,$context){
         $tmp=voyageTable::getVoyageById($_GET['idvoyage']);
-        if ((isset($tmp)) && ($tmp->nbplace>=1)){
-            if (isset($context->user){
+        if ((isset($tmp)) && ($tmp->nbplace>=1) ){
+            if (isset($context->user)){
                 $context->voyageReserve=$tmp;
                 reservationTable::addReservation($context->user,$context->voyageReserve);
                 voyageTable::setVoyagePlace($context->voyageReserve);
