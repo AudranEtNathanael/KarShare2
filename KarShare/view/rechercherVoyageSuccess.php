@@ -17,6 +17,7 @@ include('ViewLib/dataBandeauGeneration.php');
 		<th>Nombre de place</th>
 		<th>Heure de depart</th>
 		<th>Contraintes</th>
+		<th>Reserver</th>
 	</tr>
 	<?php
 		foreach($context->voyages as $voyage){
@@ -29,9 +30,15 @@ include('ViewLib/dataBandeauGeneration.php');
 			echo "<td>$voyage->nbplace</td>";
 			echo "<td>$voyage->heuredepart</td>";
 			echo "<td>$voyage->contraintes</td>";
+						echo '<td><form  action=""   method="get" style="">
+						<input type="hidden" name="action" value="reserverVoyage" >
+						<input type="hidden" name="idvoyage" value="'.$voyage->id.'" >
+						<input onclick="envoieRequeteReservation('.$voyage->id.')" id="'.$voyage->id.'" type="submit" value="Reserver" class="w3-bar-item w3-button w3-text-blue w3-hover-blue">
+					</form></td>';
 			echo "</tr>";
 		}
 	?>
+
 </table>
 <br>
 

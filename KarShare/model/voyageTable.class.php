@@ -16,7 +16,22 @@
 			return $journey;
 		}
 		
-		
+		public static function getVoyageById($id){
+			$em = dbconnection::getInstance()->getEntityManager() ;
+			
+			$voyageRepository = $em->getRepository('voyage');
+			$journey = $voyageRepository->findOneBy(array('id' => $id));
+			/*
+			if ($journey == false){
+				echo 'Erreur sql';
+			}*/
+			return $journey;
+		}
+
+		public static function setVoyagePlace($id){
+			$em = dbconnection::getInstance()->getEntityManager() ;
+			
+		}
 	}
 ?>
 

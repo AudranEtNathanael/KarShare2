@@ -92,12 +92,26 @@ function envoieRequete(){
 }
 
 function envoieRequeteConnexion(){
-	envoieRequeteController( "singleView.php?action=connexion&identifiantc="+document.getElementById("identifiantc").value+"&mdpc="+document.getElementById("mdpc").value);
+	envoieRequeteController( "monApplication.php?action=connexion&identifiantc="+document.getElementById("identifiantc").value+"&mdpc="+document.getElementById("mdpc").value);
 }
 
 function envoieRequeteInscription(){
-	envoieRequeteController( "singleView.php?action=inscription&identifianti="+document.getElementById("identifianti").value+"&mdpi="+document.getElementById("mdpi").value+"&nom="+document.getElementById("nom").value+"&prenom="+document.getElementById("prenom").value);
+	envoieRequeteController( "monApplication.php?action=inscription&identifianti="+document.getElementById("identifianti").value+"&mdpi="+document.getElementById("mdpi").value+"&nom="+document.getElementById("nom").value+"&prenom="+document.getElementById("prenom").value);
 	
+}
+
+function envoieRequeteDeconnexion(){
+	envoieRequeteController( "monApplication.php?action=deconnexion");
+	
+}
+
+function envoieRequeteReservation(idv){
+	envoieRequeteController( "singleView.php?action=reserverVoyage&idvoyage="+idv+"");
+	
+}
+
+function envoieRequeteConnexion(){
+	envoieRequeteController( "monApplication.php?action=suppression&identifiants="+document.getElementById("identifiants").value+"&mdps="+document.getElementById("mdps").value);
 }
 
 </script>
@@ -111,15 +125,55 @@ function envoieRequeteInscription(){
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar" id="myNavbar">
-    <button  onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button w3-text-blue w3-hover-blue"><i class="fa fa-user"></i> 
+     
     <?php
     if (isset($_SESSION["User"])){
+    	?>
+    	<button  onclick="document.getElementById('id03').style.display='block'" class="w3-bar-item w3-button w3-text-blue w3-hover-blue"><i class="fa fa-user"></i>
+    	<?php
     	$p=$_SESSION["User"];
     	echo $p->nom;
-    }
+    ?>
+	</button>
+  </div>
+</div>
+<div id="id03" class="w3-modal">
+  <div class="w3-modal-content">
+  		<div class="w3-row">
+				<form action=""    method="get" style="" ><!-- Bandeau (error,warning,info) -->
+					<div class="w3-twothird w3-center w3-panel">
+						      <span onclick="document.getElementById('id03').style.display='none'"
+		      					class="w3-button w3-display-topright">&times;</span>
+		      					<h3 class="w3-text-blue">Profil</h3>	
+					</div>
+				</form>
+				<div class="w3-third w3-center">
+						<br>
+						Voulez vous déconnecter?
+						<form  action=""   method="get" style="">
+						<input type="hidden" name="action" value="deconnexion" >
+						<input onclick="envoieRequeteDeconnexion()" type="submit" value="Deconnexion" class="w3-bar-item w3-button w3-text-blue w3-hover-blue">
+					</form><?php
+					/*<br>
+						Voulez vous supprimer le compte?
+						<form  action=""   method="get" style="">
+						<input type="hidden" name="action" value="supprimer" >
+						<input onclick="envoieRequeteSuppression()" type="submit" value="Supprimer" class="w3-bar-item w3-button w3-text-blue w3-hover-blue">
+					</form>*/
+					?>
+				</div>
+		</div>
+	</div>
+</div>
+
+    <?php
+	}
     else{
+    	?>
+    	<button  onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button w3-text-blue w3-hover-blue"><i class="fa fa-user"></i>
+    	<?php
     	echo "Connexion";
-    }
+    
     ?></button>
   </div>
 </div>
@@ -183,6 +237,9 @@ function envoieRequeteInscription(){
 		</div>
 	</div>
 </div>
+<?php
+}
+?>
 <!-- Bandeau (error,warning,info) -->
 	<div class="w3-row">
 		<div class="w3-quarter">
@@ -213,8 +270,6 @@ function envoieRequeteInscription(){
 				<div id="bandeau" hidden="<?php echo $band ?>"> class="<?php echo "$color" ?>">
 	        		<?php echo " $txtband !" ?>
 	      		</div>
-	      		<?php
-	        ?>
 
 	    </div>
 	</div>

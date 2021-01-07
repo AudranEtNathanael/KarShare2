@@ -15,7 +15,15 @@
 			}*/
 			return $reservations;
 		}
-		
+
+		public static function addReservation($user,$voyage){
+			$em = dbconnection::getInstance()->getEntityManager() ;
+			$r =new reservation;
+			$r->voyage=$voyage->id;
+			$r->voyageur=$user->id;
+			$em->persist($r);	
+			$em->flush();
+		}		
 		
 	}
 ?>

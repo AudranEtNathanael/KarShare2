@@ -28,6 +28,17 @@
 			}*/
 			return $user;
 		}
+
+		public static function createUser($identifiant,$mdp,$nom,$prenom){
+			$em = dbconnection::getInstance()->getEntityManager() ;
+			$user =new utilisateur;
+			$user->identifiant=$identifiant;
+			$user->pass=$mdp;
+			$user->nom=$nom;
+			$user->prenom=$prenom;
+			$em->persist($user);	
+			$em->flush();
+		}
 		
 	}
 ?>

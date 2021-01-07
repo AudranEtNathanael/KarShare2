@@ -83,14 +83,56 @@ class mainController{
         }
 	}
 
+    public static function rechercherReservation($request,$context){
+
+        return context::SUCCESS;
+    }
+
+    public static function reserverVoyage($request,$context){
+        $tmp=voyageTable::getVoyageById($_GET['idvoyage']);
+        if ((isset($tmp)) && ($tmp->nbplace>=1)){
+            if (isset($context->user){
+                $context->voyageReserve=$tmp;
+                reservationTable::addReservation($context->user,$context->voyageReserve);
+                voyageTable::setVoyagePlace($context->voyageReserve);
+                $context->info="Voyage reservé";
+                return context::SUCCESS;
+            }
+            else{
+               $context->error="Probleme d'utilisateur";
+                return context::ERROR; 
+            }
+            
+        }
+        else{
+            $context->error="Pas assez de place";
+            return context::ERROR;
+        }
+    }
+
+    public static function deconnexion($request,$context){
+        //$_SESSION["User"]=null;
+        session_unset();
+        $context->user=null;
+        return context::SUCCESS;
+    }
+
+    public static function suppression($request,$context){
+        //$_SESSION["User"]=null;
+
+        session_unset();
+        $context->user=null;
+        return context::SUCCESS;
+    }
+
+
     public static function inscription($request,$context){
         if (!(empty($_GET['identifianti'])) && !(empty($_GET['mdpi'])) && !(empty($_GET['nom'])) && !(empty($_GET['prenom']))){
-            $em = dbconnection::getInstance()->getEntityManager() ;
-            $db = $em->getConnection(); 
+            utilisateurTable::createUser($_GET['identifianti'],$_GET['mdpi'],$_GET['nom'],$_GET['prenom']);
             //$sql= "INSERT INTO jabaianb.utilisateur (identifiant,pass,nom,prenom) VALUES ('".str_replace(' ','',$_GET['identifianti'])."','"+sha1($_GET['mdpi'])."','".str_replace(' ','',$_GET['nom'])."','".str_replace(' ','',$_GET['prenom'])."');";
-            $sql= "INSERT INTO jabaianb.utilisateur (identifiant,pass,nom,prenom) VALUES ('" . $_GET['identifianti'] . "','". sha1($_GET['mdpi']) ."','". $_GET['nom'] ."','". $_GET['prenom'] ."');";
+           /* $sql= "INSERT INTO jabaianb.utilisateur (identifiant,pass,nom,prenom) VALUES ('" . $_GET['identifianti'] . "','". sha1($_GET['mdpi']) ."','". $_GET['nom'] ."','". $_GET['prenom'] ."');";
             $statement=$db->prepare($sql);
-            $statement->execute();
+            $statement->execute();*/
             session_start();
             $context->user = utilisateurTable::getUserByLoginAndPass($_GET['identifianti'],$_GET['mdpi']);
             if ($context->user){
