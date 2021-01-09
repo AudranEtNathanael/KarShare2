@@ -23,8 +23,8 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
    
   </head>
   <?php
-  if( !isset($_SESSION)){
-  	session_start(); 
+  if( $context->getSessionAttribute("User")!=null){
+
   }
  
 ?>
@@ -127,11 +127,11 @@ function envoieRequeteConnexion(){
   <div class="w3-bar" id="myNavbar">
      
     <?php
-    if (isset($_SESSION["User"])){
+    if( $context->getSessionAttribute("User")!=null){
     	?>
     	<button  onclick="document.getElementById('id03').style.display='block'" class="w3-bar-item w3-button w3-text-blue w3-hover-blue"><i class="fa fa-user"></i>
     	<?php
-    	$p=$_SESSION["User"];
+    	$p=$context->getSessionAttribute("User");
     	echo $p->nom;
     ?>
 	</button>

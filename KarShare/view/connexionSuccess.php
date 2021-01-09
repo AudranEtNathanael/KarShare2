@@ -1,6 +1,5 @@
   <?php
-  if( !isset($_SESSION)){
-  	session_start(); 
+  if( $context->getSessionAttribute("User")!=null){ 
   }
  
 ?>
@@ -14,7 +13,8 @@
     else{
     	echo "Connexion";
     }*/
-    echo $context->user->nom;
+
+    echo $context->getSessionAttribute("User")->nom;
     ?>
 </h2>
 <script>
