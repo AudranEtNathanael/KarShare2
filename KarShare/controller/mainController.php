@@ -84,17 +84,30 @@ class mainController{
 	}
 
     public static function rechercherReservation($request,$context){
-
-        return context::SUCCESS;
+    	if ($context->getSessionAttribute("User")!=null){
+            $tmp=$context->getSessionAttribute("User");
+    		$context->reservations=reservationTable::getReservationsByUser($tmp);
+            if ($context->reservations==null){
+                $context->info="Aucune réservation";
+            }
+            else {
+                $context->info="Voici vos réservations :";
+            }
+    		return context::SUCCESS;
+    	}
+        else {
+             $context->error="Probleme d'utilisateur";
+        	return context::ERROR; 
+        }
     }
 
     public static function reserverVoyage($request,$context){
         $tmp=voyageTable::getVoyageById($_GET['idvoyage']);
         if ((isset($tmp)) && ($tmp->nbplace>=1) ){
-            if (isset($context->user)){
+            if ($context->getSessionAttribute("User")!=null){
                 $context->voyageReserve=$tmp;
-                reservationTable::addReservation($context->user,$context->voyageReserve);
-                voyageTable::setVoyagePlace($context->voyageReserve);
+                reservationTable::addReservation($context->getSessionAttribute("User"),$context->voyageReserve);
+                voyageTable::setVoyagePlace($context->voyageReserve,-1);
                 $context->info="Voyage reservé";
                 return context::SUCCESS;
             }
@@ -110,6 +123,27 @@ class mainController{
         }
     }
 
+    public static function annulerReservation($request,$context){
+        $tmp=reservationTable::getReservationById($_GET['idreservation']);
+        if (isset($tmp) ){
+            if ($context->getSessionAttribute("User")!=null){
+                $context->voyageReserve=$tmp->voyage->id;
+                //voyageTable::setVoyagePlace($context->voyageReserve,+1);
+                //reservationTable::deleteReservation($tmp->id);
+                $context->info="Voyage annulé";
+                return context::SUCCESS;
+            }
+            else{
+               $context->error="Probleme d'utilisateur";
+                return context::ERROR; 
+            }
+            
+        }
+        else{
+            $context->error="Probleme selection";
+            return context::ERROR;
+        }
+    }
     public static function deconnexion($request,$context){
         //$_SESSION["User"]=null;
        $context->setSessionAttribute("User",null);

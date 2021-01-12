@@ -1,21 +1,8 @@
-  <?php
-  if( $context->getSessionAttribute("User")!=null){ 
-  }
- 
-?>
-<h2 class="w3-center w3-text-blue">
-	Vous etes connecté en tant que <?php
-/*
-    if (isset($_SESSION["User"])){
-    	$p=$_SESSION["User"];
-    	echo $p->nom;
-    }
-    else{
-    	echo "Connexion";
-    }*/
 
-    echo $context->getSessionAttribute("User")->nom;
-    ?>
+<h2 class="w3-center w3-text-blue">
+	Reservation annulée
+
+
 </h2>
 <script>
 
@@ -40,8 +27,5 @@ include('ViewLib/dataBandeauGeneration.php');
 					<label>Autoriser les correspondances</label>
 				</div>
 			</form>
-			<?php
-include('ViewLib/retourAccueil.php');
-?>
 	</div>
 <!-- Fin Bandeau -->

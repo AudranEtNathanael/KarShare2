@@ -1,14 +1,9 @@
-  <?php
-  if( !isset($_SESSION)){
-  	session_start(); 
-  }
- 
-?>
+
 <?php
 include('ViewLib/dataBandeauGeneration.php');
 ?>
 <h2 class="w3-center w3-text-blue">
-	Erreur réservation <?php
+	Erreur réservation : <?php
 /*
     if (isset($_SESSION["User"])){
     	$p=$_SESSION["User"];
@@ -17,7 +12,9 @@ include('ViewLib/dataBandeauGeneration.php');
     else{
     	echo "Connexion";
     }*/
-    echo "";
+    echo "$context->error";
+    echo"<br>";
+     echo "$context->getSessionAttribute('User')->nom";
     ?>
 </h2>
 <script>
@@ -43,5 +40,8 @@ include('ViewLib/dataBandeauGeneration.php');
 					<label>Autoriser les correspondances</label>
 				</div>
 			</form>
+			<?php
+include('ViewLib/retourAccueil.php');
+?>
 	</div>
 <!-- Fin Bandeau -->
