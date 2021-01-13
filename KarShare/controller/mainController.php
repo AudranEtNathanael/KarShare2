@@ -189,7 +189,7 @@ class mainController{
             if ($context->userC){
                 $context->setSessionAttribute("User",$context->userC);
             	$context->userC=null;
-                $context->info="Création réussi";
+                $context->info="Connexion réussi"; 
                 return context::SUCCESS;  
             } 
             else{
