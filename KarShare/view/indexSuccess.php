@@ -19,7 +19,7 @@ include('ViewLib/dataBandeauGeneration.php');
 					<input  type="submit" value="Rechercher des voyages" class="w3-col l4 w3-button w3-theme-d3">
 					<input type="text" name="depart" value="Montpellier" class="w3-col  l4 w3-input w3-border">
 					<input type="text" name="arrivee" value="Bordeaux" class="w3-col l4 w3-input  w3-border">
-					<input class="w3-check  w3-theme" type="checkbox" >
+					<input class="w3-check  w3-theme" name="correspondances" value="true" id="correspondances" type="checkbox" >
 					<label>Autoriser les correspondances</label>
 				</div>
 			</form>
