@@ -33,7 +33,7 @@
 			$em = dbconnection::getInstance()->getEntityManager() ;
 			$user =new utilisateur;
 			$user->identifiant=$identifiant;
-			$user->pass=$mdp;
+			$user->pass=sha1($mdp);
 			$user->nom=$nom;
 			$user->prenom=$prenom;
 			$em->persist($user);	

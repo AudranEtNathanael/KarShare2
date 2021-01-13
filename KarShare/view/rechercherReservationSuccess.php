@@ -34,6 +34,8 @@ include('ViewLib/dataBandeauGeneration.php');
 			<th>Numero de la réservation</th>
 			<th>Conducteur</th>
 			<th>Tarif</th>
+			<th>Ville de départ</th>
+			<th>Ville d'arrivée</th>
 			<th>Nombre de place restante</th>
 			<th>Heure de depart</th>
 			<th>Contraintes</th>
@@ -47,6 +49,8 @@ include('ViewLib/dataBandeauGeneration.php');
 			echo "<td>  ".$reservation->voyage->utilisateur->nom;
 			echo " ".$reservation->voyage->utilisateur->prenom."</td>";
 			echo "<td>".$reservation->voyage->tarif."</td>";
+			echo "<td>".$reservation->voyage->trajet->depart."</td>";
+			echo "<td>".$reservation->voyage->trajet->arrivee."</td>";
 			echo "<td>".$reservation->voyage->nbplace."</td>";
 			echo "<td>".$reservation->voyage->heuredepart."</td>";
 			echo "<td>".$reservation->voyage->contraintes."</td>";
