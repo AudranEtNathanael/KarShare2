@@ -7,8 +7,9 @@ include('ViewLib/dataBandeauGeneration.php');
 ?>
 
 
-<h4 class="w3-center">Voici les voyages pour le trajet entre <?php echo $context->voyages[0]->trajet->depart ?> et <?php echo $context->voyages[0]->trajet->arrivee ?> :</h4>
+<h4 class="w3-center">Voici les voyages pour le trajet entre <?php echo $context->depart ?> et <?php echo $context->arrivee ?> :</h4>
 <center>
+
 <table class="w3-table w3-striped w3-cyan w3-centered" style=width:50% >
 	<tr>
 		<th>Numero du voyage</th>
@@ -26,24 +27,53 @@ include('ViewLib/dataBandeauGeneration.php');
 	?>
 	</tr>
 	<?php
-		foreach($context->voyages as $voyage){
-			echo "<tr>";
-			echo "<td>$voyage->id</td>";
-			
-			echo "<td>  ".$voyage->utilisateur->nom;
-			echo " ".$voyage->utilisateur->prenom."</td>";
-			echo "<td>$voyage->tarif</td>";
-			echo "<td>$voyage->nbplace</td>";
-			echo "<td>$voyage->heuredepart</td>";
-			echo "<td>$voyage->contraintes</td>";
-			if (isset($_SESSION["User"])){
-						echo '<td><form  action=""   method="get" style="">
-						<input type="hidden" name="action" value="reserverVoyage" >
-						<input type="hidden" name="idvoyage" value="'.$voyage->id.'" >
-						<input onclick="envoieRequeteReservation('.$voyage->id.')" id="'.$voyage->id.'" type="submit" value="Reserver" class="w3-bar-item w3-button w3-text-blue w3-hover-blue">
-						</form></td>';
+		/*
+		function cmp($a, $b) {
+			if (count($a) == count($b)) {
+				return 0;
 			}
-			echo "</tr>";
+			return (count($a) < count($b)) ? -1 : 1;
+		}
+		
+		usort($context->voyagesAndCorresp, 'cmp');
+		 */
+		foreach($context->voyagesAndCorresp as $CorrespList){
+			if(count($CorrespList) > 1){
+				echo "<tr>";
+				if (isset($_SESSION["User"])){
+					echo "<th colspan='7' class='w3-dark-grey'><small>Correspondances<small></th>";
+				}else{
+					echo "<th colspan='6' class='w3-dark-grey'><small>Correspondances<small></th>";
+				}
+				echo "</tr>";
+			}else{
+				echo "<tr>";
+				if (isset($_SESSION["User"])){
+					echo "<th colspan='7' class='w3-dark-grey'><small>Voyage Simple<small></th>";
+				}else{
+					echo "<th colspan='6' class='w3-dark-grey'><small>Voyage Simple<small></th>";
+				}
+				echo "</tr>";
+			}
+			foreach($CorrespList as $corresp){
+				echo "<tr>";
+				echo "<td>$corresp->id</td>";
+				
+				echo "<td>  ".$corresp->utilisateur->nom;
+				echo " ".$corresp->utilisateur->prenom."</td>";
+				echo "<td>$corresp->tarif</td>";
+				echo "<td>$corresp->nbplace</td>";
+				echo "<td>$corresp->heuredepart</td>";
+				echo "<td>$corresp->contraintes</td>";
+				if (isset($_SESSION["User"])){
+							echo '<td><form  action=""   method="get" style="">
+							<input type="hidden" name="action" value="reserverVoyage" >
+							<input type="hidden" name="idvoyage" value="'.$corresp->id.'" >
+							<input onclick="envoieRequeteReservation('.$corresp->id.')" id="'.$corresp->id.'" type="submit" value="Reserver" class="w3-bar-item w3-button w3-text-blue w3-hover-blue">
+							</form></td>';
+				}
+				echo "</tr>";
+			}
 		}
 	?>
 

@@ -64,7 +64,7 @@ class mainController{
 		return context::SUCCESS;
 	}
 
-	public static function rechercherVoyage($request,$context){
+	public static function rechercherVoyage_BACK($request,$context){
         $context->trajet = trajetTable::getTrajet($_GET['depart'],$_GET['arrivee']);
         if ($context->trajet){
             $context->voyages = voyageTable::getVoyageByTrajet($context->trajet->id);
@@ -234,5 +234,70 @@ class mainController{
 		}
 		$context->errorLinkedToView="Un champ est vide";
 		return context::ERROR;
+	}
+	
+	
+	
+	
+	public static function rechercherVoyage($request,$context){
+		$context->trajet = trajetTable::getTrajet($_GET['depart'],$_GET['arrivee']);
+		if ($context->trajet){
+			
+			
+			$em = dbconnection::getInstance()->getEntityManager() ;
+			$db = $em->getConnection();
+			if(isset($_GET['correspondances'])){
+				$cor = "true";
+			}else{
+				$cor = "false";
+			}
+			
+			$RAW_QUERY = "SELECT * FROM getCorrCallRec(true, '".$_GET['depart']."', '".$_GET['arrivee']."');";
+			
+			
+			$statement = $db->prepare($RAW_QUERY);
+			$statement->execute();
+			
+			$result = $statement->fetchAll();
+			//$result = pg_fetch_array($result1, NULL, PGSQL_ASSOC);
+			
+			$context->voyages = $result;
+			
+			
+			//$context->voyages = voyageTable::getVoyagesCorForDepFin($_GET['depart'], $_GET['arrivee']);
+			if ($context->voyages){
+				
+				$CorresTab= array();
+				$i = 0;
+				foreach ($result as &$FunctionResArray) {
+					foreach ($FunctionResArray as $strIntArray) {
+						$intArray = preg_split("/[,]+/", substr($strIntArray, 1, -1));
+						$j = 0;
+						foreach ($intArray as $currentInt) {
+							$CorresTab[$i][$j] = voyageTable::getVoyageById($currentInt);
+							$j = $j + 1;
+						}
+						$i = $i + 1;
+					}
+				}
+				
+				//echo "Version X";
+				
+				$context->depart = $_GET['depart'];
+				$context->arrivee = $_GET['arrivee'];
+				$context->voyagesAndCorresp = $CorresTab;
+				
+				$context->info="Recherche termine";
+				return context::SUCCESS;
+			}
+			else {
+				$context->info="Aucun voyage pour ce trajet";
+				return context::ERROR;
+			}
+		}
+		else {
+			$context->error="Votre trajet n existe pas";
+			return context::ERROR;
+		}
 	}
 }
