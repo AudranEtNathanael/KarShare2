@@ -91,7 +91,7 @@ class mainController{
                 $context->info="Aucune réservation";
             }
             else {
-                $context->info="Voici vos réservations :";
+                $context->info="Recherche réussi";
             }
     		return context::SUCCESS;
     	}
