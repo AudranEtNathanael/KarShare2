@@ -20,9 +20,6 @@ function envoieRequete(){
 <?php
 include('ViewLib/dataBandeauGeneration.php');
 ?>
-<p>
-	ERREUR
-</p>
 
 <!-- Bandeau (error,warning,info) -->
 		<div class="w3-center w3-panel ">
@@ -40,3 +37,6 @@ include('ViewLib/dataBandeauGeneration.php');
 <!-- Fin Bandeau -->
 
 
+<script type="text/javascript">
+window.onload=actualiseBandeau();
+</script>

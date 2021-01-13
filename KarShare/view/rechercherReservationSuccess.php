@@ -72,3 +72,7 @@ include('ViewLib/dataBandeauGeneration.php');
 include('ViewLib/retourAccueil.php');
 ?>
 	</div>
+
+<script type="text/javascript">
+window.onload=actualiseBandeau();
+</script>

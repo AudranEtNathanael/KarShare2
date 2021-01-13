@@ -3,11 +3,7 @@
   }
  
 ?>
-<h2 class="w3-center w3-text-blue">
-	<?php
-    echo $context->error;
-    ?>
-</h2>
+
 <script>
 
 </script>
@@ -27,3 +23,8 @@ include('ViewLib/dataBandeauGeneration.php');
 include('ViewLib/retourAccueil.php');
 ?>
 	</div>
+
+
+<script type="text/javascript">
+window.onload=actualiseBandeau();
+</script>

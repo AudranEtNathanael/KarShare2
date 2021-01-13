@@ -12,7 +12,7 @@ include('ViewLib/dataBandeauGeneration.php');
     else{
     	echo "Connexion";
     }*/
-    echo "$context->error";
+
     echo"<br>";
      echo "$context->getSessionAttribute('User')->nom";
     ?>
@@ -45,3 +45,8 @@ include('ViewLib/retourAccueil.php');
 ?>
 	</div>
 <!-- Fin Bandeau -->
+
+
+<script type="text/javascript">
+window.onload=actualiseBandeau();
+</script>

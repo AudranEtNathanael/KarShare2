@@ -45,3 +45,8 @@ include('ViewLib/retourAccueil.php');
 ?>
 	</div>
 <!-- Fin Bandeau -->
+
+
+<script type="text/javascript">
+window.onload=actualiseBandeau();
+</script>

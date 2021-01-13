@@ -45,3 +45,7 @@ include('ViewLib/dataBandeauGeneration.php');
 			</form>
 	</div>
 <!-- Fin Bandeau -->
+
+<script type="text/javascript">
+window.onload=actualiseBandeau();
+</script>
