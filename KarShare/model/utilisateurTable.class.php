@@ -9,10 +9,10 @@
 
 			$userRepository = $em->getRepository('utilisateur');
 			$user = $userRepository->findOneBy(array('identifiant' => $login, 'pass' => sha1($pass)));
-            
+            /*
 			if ($user == false){
 				echo 'Erreur sql';
-					   }
+					   }*/
 			return $user;
 		}
 
@@ -22,11 +22,22 @@
 			
 			$userRepository = $em->getRepository('utilisateur');
 			$user = $userRepository->findOneBy(array('id' => $id));
-			
+			/*
 			if ($user == false){
 				echo 'Erreur sql';
-			}
+			}*/
 			return $user;
+		}
+
+		public static function createUser($identifiant,$mdp,$nom,$prenom){
+			$em = dbconnection::getInstance()->getEntityManager() ;
+			$user =new utilisateur;
+			$user->identifiant=$identifiant;
+			$user->pass=sha1($mdp);
+			$user->nom=$nom;
+			$user->prenom=$prenom;
+			$em->persist($user);	
+			$em->flush();
 		}
 		
 	}

@@ -31,9 +31,9 @@ if($view===false)
 elseif($view!=context::NONE)
 {
 	$template_view=$nameApp."/view/".$action.$view.".php";
-	?><div id="view1"><?php
+	?><?php
 	include($template_view);
-	?></div><?php
+	?><?php
 }
 
 ?>

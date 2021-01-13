@@ -1,12 +1,16 @@
 
+<h2 class="w3-center w3-text-blue">
+	Reservation annulée
 
+
+</h2>
 <script>
 
 </script>
 <?php
 include('ViewLib/dataBandeauGeneration.php');
 ?>
-	<div class="w3-row">
+	<div class="w3-row ">
 		<div class="w3-quarter">
 			<p>	
 			</p>
@@ -25,5 +29,3 @@ include('ViewLib/dataBandeauGeneration.php');
 			</form>
 	</div>
 <!-- Fin Bandeau -->
-
-

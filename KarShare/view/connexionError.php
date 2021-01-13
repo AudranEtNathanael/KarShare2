@@ -1,18 +1,31 @@
 
-
+<center>
 <script>
-
+var xhr;
+function envoieRequete(){
+	if(window.ActiveXObject){
+		try{
+			xhr=new ActiveXObject("Microsoft.XMLHTTP");
+		}// autre version ie < 5.0
+		catch(e){
+			xhr=new ActiveXObject("MSXML2.XMLHTTP");}
+	}else if(window.XMLHttpRequest){
+		xhr=new XMLHttpRequest();
+	}
+	xhr.onreadystatechange=recupereReponse;
+	xhr.open("GET", "monApplication.php?action=rechercherVoyage", true);
+	xhr.send(null);
+}
 </script>
 <?php
 include('ViewLib/dataBandeauGeneration.php');
 ?>
-	<div class="w3-row">
-		<div class="w3-quarter">
-			<p>	
-			</p>
-		</div>
+<p>
+	ERREUR
+</p>
+
 <!-- Bandeau (error,warning,info) -->
-		<div class="w3-center w3-panel w3-half w3-center">
+		<div class="w3-center w3-panel ">
 			<form action="monApplication.php" target="_blank" method="get" style="">
 				<div class="w3-row w3-center" style="">
 					<input type="hidden" name="action" value="rechercherVoyage" >

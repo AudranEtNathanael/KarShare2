@@ -1,12 +1,29 @@
 
-
+<?php
+include('ViewLib/dataBandeauGeneration.php');
+?>
+<h2 class="w3-center w3-text-blue">
+	Erreur réservation : <?php
+/*
+    if (isset($_SESSION["User"])){
+    	$p=$_SESSION["User"];
+    	echo $p->nom;
+    }
+    else{
+    	echo "Connexion";
+    }*/
+    echo "$context->error";
+    echo"<br>";
+     echo "$context->getSessionAttribute('User')->nom";
+    ?>
+</h2>
 <script>
 
 </script>
 <?php
 include('ViewLib/dataBandeauGeneration.php');
 ?>
-	<div class="w3-row">
+	<div class="w3-row ">
 		<div class="w3-quarter">
 			<p>	
 			</p>
@@ -23,7 +40,8 @@ include('ViewLib/dataBandeauGeneration.php');
 					<label>Autoriser les correspondances</label>
 				</div>
 			</form>
+			<?php
+include('ViewLib/retourAccueil.php');
+?>
 	</div>
 <!-- Fin Bandeau -->
-
-

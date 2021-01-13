@@ -1,9 +1,9 @@
-drop table jabaianb.reservation ;
-drop table jabaianb.voyage ;
-drop table jabaianb.trajet ;
-drop table jabaianb.utilisateur ;
+drop table reservation ;
+drop table voyage ;
+drop table trajet ;
+drop table utilisateur ;
 
-CREATE TABLE jabaianb.utilisateur (
+CREATE TABLE utilisateur (
  id SERIAL ,
  identifiant VARCHAR(45) NULL ,
  pass VARCHAR(45) NULL ,
@@ -13,7 +13,7 @@ CREATE TABLE jabaianb.utilisateur (
  PRIMARY KEY (id) );
 
 
-CREATE TABLE jabaianb.trajet (
+CREATE TABLE trajet (
  id SERIAL ,
  depart VARCHAR(25) NULL ,
  arrivee VARCHAR(25) NULL ,
@@ -21,7 +21,7 @@ CREATE TABLE jabaianb.trajet (
  PRIMARY KEY (id) );
 
 
-CREATE TABLE jabaianb.voyage (
+CREATE TABLE voyage (
  id SERIAL ,
  conducteur INT NULL ,
  trajet INT NULL ,
@@ -32,28 +32,28 @@ CREATE TABLE jabaianb.voyage (
  PRIMARY KEY (id) ,
  CONSTRAINT utilisateur
  FOREIGN KEY (conducteur)
- REFERENCES jabaianb.utilisateur (id )
+ REFERENCES utilisateur (id )
  ON DELETE NO ACTION
  ON UPDATE NO ACTION,
  CONSTRAINT trajet
  FOREIGN KEY (trajet)
- REFERENCES jabaianb.trajet (id )
+ REFERENCES trajet (id )
  ON DELETE NO ACTION
  ON UPDATE NO ACTION);
 
-CREATE TABLE jabaianb.reservation (
+CREATE TABLE reservation (
  id SERIAL ,
  voyage INT NULL ,
  voyageur INT NULL ,
  PRIMARY KEY (id) ,
  CONSTRAINT utilisateur
  FOREIGN KEY (voyageur)
- REFERENCES jabaianb.utilisateur (id )
+ REFERENCES utilisateur (id )
  ON DELETE NO ACTION
  ON UPDATE NO ACTION,
  CONSTRAINT voyage
  FOREIGN KEY (voyage)
- REFERENCES jabaianb.voyage (id )
+ REFERENCES voyage (id )
  ON DELETE NO ACTION
  ON UPDATE NO ACTION);
   
